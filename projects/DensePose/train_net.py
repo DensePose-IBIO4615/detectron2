@@ -63,6 +63,7 @@ def main(args):
 
 
 if __name__ == "__main__":
+    #breakpoint()
     args = default_argument_parser().parse_args()
     cfg = setup(args)
     timeout = (

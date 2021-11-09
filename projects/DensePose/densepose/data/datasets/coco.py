@@ -244,7 +244,7 @@ def _combine_images_with_annotations(
 
     for img_dict, ann_dicts in zip(img_datas, ann_datas):
         record = {}
-        record["file_name"] = os.path.join(image_root, img_dict["file_name"])
+        record["file_name"] = os.getcwd() + "/densepose/data/" + os.path.join(image_root, img_dict["file_name"])
         record["height"] = img_dict["height"]
         record["width"] = img_dict["width"]
         record["image_id"] = img_dict["id"]
@@ -364,7 +364,7 @@ def load_coco_json(annotations_json_file: str, image_root: str, dataset_name: st
         If provided, these keys are used to extract additional data from
         the annotations.
     """
-    coco_api = _load_coco_annotations(PathManager.get_local_path(annotations_json_file))
+    coco_api = _load_coco_annotations(os.getcwd()+"/densepose/data/"+annotations_json_file)
     _add_categories_metadata(dataset_name, coco_api.loadCats(coco_api.getCatIds()))
     # sort indices for reproducible results
     img_ids = sorted(coco_api.imgs.keys())
