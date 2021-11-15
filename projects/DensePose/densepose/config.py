@@ -194,9 +194,11 @@ def add_densepose_head_config(cfg: CN):
     _C.MODEL.ROI_DENSEPOSE_HEAD.DECODER_NORM = ""
     _C.MODEL.ROI_DENSEPOSE_HEAD.DECODER_COMMON_STRIDE = 4
     # For DeepLab head
-    _C.MODEL.ROI_DENSEPOSE_HEAD.DEEPLAB = CN()
-    _C.MODEL.ROI_DENSEPOSE_HEAD.DEEPLAB.NORM = "GN"
-    _C.MODEL.ROI_DENSEPOSE_HEAD.DEEPLAB.NONLOCAL_ON = 0
+    #_C.MODEL.ROI_DENSEPOSE_HEAD.DEEPLAB = CN()
+    #_C.MODEL.ROI_DENSEPOSE_HEAD.DEEPLAB.NORM = "GN"
+    #_C.MODEL.ROI_DENSEPOSE_HEAD.DEEPLAB.NONLOCAL_ON = 0
+    _C.MODEL.ROI_DENSEPOSE_HEAD.DETR = CN()
+
     # Predictor class name, must be registered in DENSEPOSE_PREDICTOR_REGISTRY
     # Some registered predictors:
     #   "DensePoseChartPredictor": predicts segmentation and UV coordinates for predefined charts
@@ -214,11 +216,11 @@ def add_densepose_head_config(cfg: CN):
     _C.MODEL.ROI_DENSEPOSE_HEAD.LOSS_NAME = "DensePoseChartWithConfidenceLoss"
     # Confidences
     # Enable learning UV confidences (variances) along with the actual values
-    _C.MODEL.ROI_DENSEPOSE_HEAD.UV_CONFIDENCE = CN({"ENABLED": False})
+    _C.MODEL.ROI_DENSEPOSE_HEAD.UV_CONFIDENCE = CN({"ENABLED": False}) # DEFAULT: False
     # UV confidence lower bound
     _C.MODEL.ROI_DENSEPOSE_HEAD.UV_CONFIDENCE.EPSILON = 0.01
     # Enable learning segmentation confidences (variances) along with the actual values
-    _C.MODEL.ROI_DENSEPOSE_HEAD.SEGM_CONFIDENCE = CN({"ENABLED": False})
+    _C.MODEL.ROI_DENSEPOSE_HEAD.SEGM_CONFIDENCE = CN({"ENABLED": False}) # DEFAULT: False
     # Segmentation confidence lower bound
     _C.MODEL.ROI_DENSEPOSE_HEAD.SEGM_CONFIDENCE.EPSILON = 0.01
     # Statistical model type for confidence learning, possible values:
